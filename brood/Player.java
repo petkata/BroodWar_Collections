@@ -1,9 +1,8 @@
 package brood;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import org.omg.CORBA.Current;
 
 public class Player {
 
@@ -11,6 +10,7 @@ public class Player {
 	Map<String, Integer> resources;
 	// current supply limit
 	int supplyLimit;
+	// total unit supply
 	int unitSupply;
 	
 	//TODO Gas cost for units
@@ -103,6 +103,7 @@ public class Player {
 		return false;
 	}
 
+	//TODO Fix setValue
 	void warpBuilding(String buildingName, int mineralCost, int gasCost) {
 		if (hasEnoughResources(mineralCost, gasCost)) {
 			if (hasBuilding(buildingName)) {
@@ -124,7 +125,8 @@ public class Player {
 			if (buildingName.equals("Pylon")) {
 				this.supplyLimit+=8;
 			}
-			System.out.println(buildingName + " warped");
+			System.out.println(buildingName + " warped." + " -" +getBuildingMineralCost(buildingName) +" Minerals" );
+			this.resources.put("Minerals", this.resources.get("Minerals") - getBuildingMineralCost(buildingName));
 		} else {
 			System.out.println("Not enough resources");
 		}
@@ -207,7 +209,8 @@ public class Player {
 
 				} else
 					System.out.println("You Must Construct Additional Pylons!");
-			}
+			}else 
+				System.out.println("Not enough resources for warping " + unitName);
 
 		} else
 			System.out.println("Must have Nexus");
@@ -289,9 +292,6 @@ public class Player {
 	}
 
 	boolean hasBuilding(String building) {
-		// v-name v-minerals v-gas v-number of this type of buildings
-		// Map<Map<String, Map<Integer,Integer>>, Integer> buildings;
-
 		for (Map<String, Map<Integer, Integer>> e : this.buildings.keySet()) {
 			if (e.keySet().contains(building)) {
 				return true;

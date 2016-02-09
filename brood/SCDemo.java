@@ -8,7 +8,10 @@ public class SCDemo {
 		player.showStats();
 		player.units();
 		player.warpBuilding("Pylon", 100, 0);
-//		player.warpBuilding("Pylon", 100, 0);
+		player.warpBuilding("Pylon", 100, 0);
+		player.warpBuilding("Gateway", 150, 0);
+		player.warpBuilding("Pylon", 100, 0);
+//		player.warpBuilding("Gateway", 150, 0);
 		
 		player.warpUnit("Probe");
 		player.warpUnit("Probe");
@@ -26,10 +29,10 @@ public class SCDemo {
 		
 		
 
-		new Probe("Minerals").start();
-		new Probe("Vespene gas").start();
-		new Probe("Minerals").start();
-		new Probe("Minerals").start();
+//		new Probe("Minerals").start();
+//		new Probe("Vespene gas").start();
+//		new Probe("Minerals").start();
+//		new Probe("Minerals").start();
 	}
 	
 	
