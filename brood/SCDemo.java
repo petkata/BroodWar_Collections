@@ -10,7 +10,9 @@ public class SCDemo {
 		player.warpBuilding("Pylon", 100, 0);
 		player.warpBuilding("Pylon", 100, 0);
 		player.warpBuilding("Gateway", 150, 0);
-		player.warpBuilding("Pylon", 100, 0);
+		player.warpBuilding("Gateway", 150, 0);
+		player.warpBuilding("Gateway", 150, 0);
+//		player.warpBuilding("Pylon", 100, 0);
 //		player.warpBuilding("Gateway", 150, 0);
 		
 		player.warpUnit("Probe");

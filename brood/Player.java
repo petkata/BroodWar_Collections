@@ -103,20 +103,24 @@ public class Player {
 		return false;
 	}
 
-	//TODO Fix setValue
 	void warpBuilding(String buildingName, int mineralCost, int gasCost) {
 		if (hasEnoughResources(mineralCost, gasCost)) {
 			if (hasBuilding(buildingName)) {
 				for (Entry<Map<String, Map<Integer, Integer>>, Integer> e : this.buildings.entrySet()) {
-					for (Map<String, Map<Integer, Integer>> eKeys : this.buildings.keySet()) {
-						for (String keyName : eKeys.keySet()) {
-							if (keyName.equals(buildingName)) {
-								e.setValue(e.getValue() + 1);
+					if (e.getKey().containsKey(buildingName)) {
+						for (Map<String, Map<Integer, Integer>> eKeys : this.buildings.keySet()) {
+							if (eKeys.containsKey(buildingName)) {
+								for (String keyName : eKeys.keySet()) {
+									if (keyName.equals(buildingName)) {
+										e.setValue(e.getValue() + 1);
+									}
+								}
 							}
 						}
 					}
 				}
-			} else {
+			} 
+			else {
 				Map<String, Map<Integer, Integer>> structure = new HashMap<>();
 				structure.put(buildingName, new HashMap<>());
 				structure.get(buildingName).put(mineralCost, gasCost);
@@ -128,7 +132,7 @@ public class Player {
 			System.out.println(buildingName + " warped." + " -" +getBuildingMineralCost(buildingName) +" Minerals" );
 			this.resources.put("Minerals", this.resources.get("Minerals") - getBuildingMineralCost(buildingName));
 		} else {
-			System.out.println("Not enough resources");
+			System.out.println("Not enough resources to construct " + buildingName);
 		}
 	}
 
